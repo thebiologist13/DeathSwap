@@ -114,6 +114,13 @@ public class DSListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         final Player player = event.getPlayer();
+        
+        if(!plugin.match.containsKey(player.getName()) 
+        		|| !plugin.match.containsValue(player.getName())) {
+        	//Return if they are not in a match.
+        	return;
+        }
+        
         plugin.winGame.winGame(player, false);
         plugin.utility.restorePlayer(player);
     }
